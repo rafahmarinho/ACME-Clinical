@@ -1,0 +1,12 @@
+-- ACME Clinical demo data is loaded by the Python seed script, because the demo
+-- accounts must be created through the Supabase Auth admin API:
+--
+--   cd backend
+--   python -m scripts.seed
+--
+-- The script creates 7 staff accounts (nurse, physician, biomedical technician,
+-- administrator and three colleagues), 2 wards, 14 beds, 12 fictional patients,
+-- 10 simulated monitors, alarm thresholds, maintenance work orders, notes and two
+-- hours of simulated vital-sign history. Administrators can restore this state
+-- at any time from Simulation → Reset demo data.
+select 1;

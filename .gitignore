@@ -1,0 +1,20 @@
+# Dependencies and builds
+node_modules/
+dist/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Environment
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Tooling
+.vercel/
+.DS_Store
+*.log
+supabase/.temp/
+supabase/.branches/
