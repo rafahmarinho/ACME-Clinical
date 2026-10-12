@@ -63,9 +63,8 @@ ACME Clinical/
 │   ├── config.toml                             # Supabase CLI (local development)
 │   └── seed.sql                                # points to the Python seed script
 ├── backend/
-│   ├── api/index.py            # Vercel entry point
 │   ├── app/
-│   │   ├── main.py             # FastAPI app, CORS, error handling
+│   │   ├── main.py             # FastAPI app (Vercel entrypoint), CORS, error handling
 │   │   ├── core/               # settings, auth & role checks, errors
 │   │   ├── db/                 # Supabase client factory
 │   │   ├── repositories/       # database access (one module per table)
@@ -247,7 +246,7 @@ Create **two Vercel projects from the same repository**: one for the API and one
 
 ### 1. API project
 
-1. **New Project → Import repository → Root Directory: `backend`**. Framework preset: *Other*. `backend/vercel.json` routes every request to the FastAPI app in `api/index.py`, and `requirements.txt` is installed automatically. `.python-version` selects Python 3.12.
+1. **New Project → Import repository → Root Directory: `backend`**. Framework preset: *FastAPI*. Vercel loads the `app` instance from `backend/app/main.py` and installs `requirements.txt`; `.python-version` selects Python 3.12. Do not add a catch-all rewrite: backend framework projects route rewrites to the destination path, which would hide every API route.
 2. Environment variables:
 
    | Name | Value |
@@ -288,7 +287,7 @@ cd backend  && vercel link && vercel env add SUPABASE_URL && vercel env add SUPA
 cd ../frontend && vercel link && vercel env add VITE_API_URL && vercel env add VITE_SUPABASE_URL && vercel env add VITE_SUPABASE_ANON_KEY && vercel --prod
 ```
 
-> **Serverless note:** Vercel functions don't run background loops, so the simulation advances only when someone presses an advance button or keeps the app open in **Live** mode. This keeps the demo free when nobody is watching. Large advances (+60 min) run in one request well within the 60 s `maxDuration`.
+> **Serverless note:** Vercel functions don't run background loops, so the simulation advances only when someone presses an advance button or keeps the app open in **Live** mode. This keeps the demo free when nobody is watching. Large advances (+60 min) run in one request well within the default function timeout.
 
 ---
 
