@@ -16,5 +16,6 @@ __pycache__/
 .vercel/
 .DS_Store
 *.log
+/demo/
 supabase/.temp/
 supabase/.branches/
